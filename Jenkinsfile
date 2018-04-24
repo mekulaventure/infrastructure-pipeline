@@ -11,7 +11,7 @@ node('linux') {
     stage('TerminateInstances') {
         /**sh "def output = sh returnStdout: true, script: 'aws ec2 describe-instances | jq .'"**/
         /**sh "aws ec2 wait instance-running(aws ec2 terminate-instances --instance-ids {{def}})"**/
-        sh "aws ec2 wait instance-running (curl http://169.254.169.254/latest/meta-data/instance-id)"
+        sh "aws ec2 wait instance-running {curl http://169.254.169.254/latest/meta-data/instance-id}"
     }
     stage('Test') {
         sh "env"
